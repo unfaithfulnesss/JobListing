@@ -12,7 +12,7 @@
 </header>
 <main>
     <form action="updateApplicant" method="post">
-        <div hidden="hidden" >
+        <div hidden="hidden">
             <label for="id">ID : </label>
             <input type="text" id="id" name="id" value="${applicants.id}">
         </div>

@@ -1,5 +1,6 @@
 package com.example.joblisting.entities;
 
+import com.example.joblisting.enumerators.JobType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,19 +25,18 @@ public class JobListing {
     private String description;
     private String company;
     private double salary;
-
+    private JobType jobType = JobType.PERMANENT;
     @CreatedDate
     private Date datePosted;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private JobPoster jobPoster;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Category category;
 
     @OneToMany(mappedBy = "jobListing", fetch = FetchType.LAZY)
     private List<Application> applications= new ArrayList<>();
-
 
 
 }
