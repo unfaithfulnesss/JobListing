@@ -33,8 +33,12 @@
             <input type="number" id="salary" name="salary">
         </div>
         <div>
-            <label for="jobType">Job Type : </label>
-            <input type="text" id="jobType" name="jobType">
+            <label for="jobTypes">Job Type:</label>
+            <select name="jobTypes" id="jobTypes">
+                <c:forEach items="${jobTypes}" var="jobType">
+                    <option value="${jobType}">${jobType}</option>
+                </c:forEach>
+            </select>
         </div>
         <div>
             <label for="datePosted">Date Posted : </label>
