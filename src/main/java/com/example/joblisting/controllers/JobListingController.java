@@ -3,6 +3,7 @@ package com.example.joblisting.controllers;
 import com.example.joblisting.entities.Category;
 import com.example.joblisting.entities.JobListing;
 import com.example.joblisting.entities.JobPoster;
+import com.example.joblisting.enumerators.JobType;
 import com.example.joblisting.services.CategoryService;
 import com.example.joblisting.services.JobListingService;
 import com.example.joblisting.services.JobPosterService;
@@ -26,11 +27,12 @@ public class JobListingController {
     public String createJobListing(ModelMap modelMap){
         List<JobPoster> jobPosters = jobPosterService.getAllJobPosters();
         List<Category> categories = categoryService.getAllCategories();
+        JobType[] jobTypes = JobType.values();
         modelMap.addAttribute("jobPosters", jobPosters);
         modelMap.addAttribute("categories", categories);
+        modelMap.addAttribute("jobTypes", jobTypes);
         return "CreateJobListing";
     }
-
     @RequestMapping("/saveJobListing")
     public String saveJobListing(@ModelAttribute("JobListing")JobListing jobListing){
         JobListing saveJobListing = jobListingService.saveJobListing(jobListing);
