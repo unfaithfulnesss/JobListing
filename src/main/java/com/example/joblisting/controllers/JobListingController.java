@@ -8,6 +8,7 @@ import com.example.joblisting.services.CategoryService;
 import com.example.joblisting.services.JobListingService;
 import com.example.joblisting.services.JobPosterService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -40,16 +41,28 @@ public class JobListingController {
     }
 
     @RequestMapping("/JobListingsList")
-    public String jobListingsList(ModelMap modelMap){
-        List<JobListing> jobListings = jobListingService.getAllJobListings();
+    public String jobListingsList(ModelMap modelMap,
+                                  @RequestParam(name = "page", defaultValue = "0") int page,
+                                  @RequestParam(name = "size", defaultValue = "4") int size)
+    {
+        Page<JobListing> jobListings = jobListingService.getAllJobListingsByPage(page, size);
         modelMap.addAttribute("JobListings", jobListings);
+        modelMap.addAttribute("currentPage", page);
+        modelMap.addAttribute("pages", new int[jobListings.getTotalPages()]);
         return "JobListingsList";
     }
 
     @RequestMapping("/deleteJobListing")
-    public String deleteJobListing(@RequestParam("id") Long id, ModelMap modelMap){
+    public String deleteJobListing(@RequestParam("id") Long id, ModelMap modelMap,
+                                   @RequestParam(name = "page", defaultValue = "0") int page,
+                                   @RequestParam(name = "size", defaultValue = "4") int size)
+    {
         jobListingService.deleteJobListing(id);
-        return jobListingsList(modelMap);
+        Page<JobListing> jobListings = jobListingService.getAllJobListingsByPage(page, size);
+        modelMap.addAttribute("JobListings", jobListings);
+        modelMap.addAttribute("currentPage", page);
+        modelMap.addAttribute("pages", new int[jobListings.getTotalPages()]);
+        return "JobListingsList";
     }
     @RequestMapping("/editJobListing")
     public String editJobListing(@RequestParam("id") Long id, ModelMap modelMap){

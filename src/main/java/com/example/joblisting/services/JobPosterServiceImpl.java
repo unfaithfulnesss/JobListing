@@ -3,6 +3,8 @@ package com.example.joblisting.services;
 import com.example.joblisting.entities.JobPoster;
 import com.example.joblisting.repositories.JobPosterRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -40,5 +42,10 @@ public class JobPosterServiceImpl implements JobPosterService{
     public List<JobPoster> getAllJobPosters() {
         return jobPosterRepository.findAll();
     }
-    
+
+    @Override
+    public Page<JobPoster> getAllJobPostersByPage(int page, int size) {
+        return jobPosterRepository.findAll(PageRequest.of(page, size));
+    }
+
 }

@@ -3,6 +3,7 @@ package com.example.joblisting.controllers;
 import com.example.joblisting.entities.Applicant;
 import com.example.joblisting.services.ApplicantService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -26,17 +27,28 @@ public class ApplicantController {
         return "CreateApplicant";
     }
     @RequestMapping("/applicantsList")
-    public String applicantsList(ModelMap modelMap){
-        List<Applicant> applicants = applicantService.getAllApplicants();
+    public String applicantsList(ModelMap modelMap,
+                                 @RequestParam(name = "page", defaultValue = "0") int page,
+                                 @RequestParam(name = "size", defaultValue = "4") int size)
+    {
+        Page<Applicant> applicants = applicantService.getAllApplicantsByPage(page, size);
         modelMap.addAttribute("applicants", applicants);
+        modelMap.addAttribute("currentPage", page);
+        modelMap.addAttribute("pages", new int[applicants.getTotalPages()]);
         return "ApplicantsList";
 
     }
     @RequestMapping("/deleteApplicant")
-    public String deleteApplicant(@RequestParam("id") Long id, ModelMap modelMap){
+    public String deleteApplicant(@RequestParam("id") Long id, ModelMap modelMap,
+                                  @RequestParam(name = "page", defaultValue = "0") int page,
+                                  @RequestParam(name = "size", defaultValue = "4") int size)
+    {
         applicantService.deleteApplicant(id);
-        return applicantsList(modelMap);
-    }
+        Page<Applicant> applicants = applicantService.getAllApplicantsByPage(page, size);
+        modelMap.addAttribute("applicants", applicants);
+        modelMap.addAttribute("currentPage", page);
+        modelMap.addAttribute("pages", new int[applicants.getTotalPages()]);
+        return "ApplicantsList";    }
     @RequestMapping("/editApplicant")
     public String editApplicant(@RequestParam("id") Long id, ModelMap modelMap){
         Applicant applicant= applicantService.getApplicantById(id);

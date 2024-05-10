@@ -1,6 +1,7 @@
 package com.example.joblisting.services;
 
 import com.example.joblisting.entities.Category;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,4 +14,5 @@ public interface CategoryService {
     void deleteAllCategories();
     Category getCategoryById(Long id);
     List<Category> getAllCategories();
+    Page<Category> getAllCategoriesByPage(int page, int size);
 }

@@ -3,6 +3,7 @@ package com.example.joblisting.controllers;
 import com.example.joblisting.entities.Category;
 import com.example.joblisting.services.CategoryService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -26,16 +27,28 @@ public class CategoryController {
         return "CreateCategory";
     }
     @RequestMapping("/CategoriesList")
-    public String categoriesList(ModelMap modelMap){
-        List<Category> categories = categoryService.getAllCategories();
+    public String categoriesList(ModelMap modelMap,
+                                 @RequestParam(name = "page", defaultValue = "0") int page,
+                                 @RequestParam(name = "size", defaultValue = "4") int size)
+    {
+        Page<Category> categories = categoryService.getAllCategoriesByPage(page, size);
         modelMap.addAttribute("Categories", categories);
+        modelMap.addAttribute("currentPage", page);
+        modelMap.addAttribute("pages", new int[categories.getTotalPages()]);
         return "CategoriesList";
 
     }
     @RequestMapping("/deleteCategory")
-    public String deleteCategory(@RequestParam("id") Long id, ModelMap modelMap){
+    public String deleteCategory(@RequestParam("id") Long id, ModelMap modelMap,
+                                 @RequestParam(name = "page", defaultValue = "0") int page,
+                                 @RequestParam(name = "size", defaultValue = "4") int size)
+    {
         categoryService.deleteCategory(id);
-        return categoriesList(modelMap);
+        Page<Category> categories = categoryService.getAllCategoriesByPage(page, size);
+        modelMap.addAttribute("Categories", categories);
+        modelMap.addAttribute("currentPage", page);
+        modelMap.addAttribute("pages", new int[categories.getTotalPages()]);
+        return "CategoriesList";
     }
     @RequestMapping("/editCategory")
     public String editCategory(@RequestParam("id") Long id, ModelMap modelMap){

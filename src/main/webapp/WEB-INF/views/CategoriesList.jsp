@@ -6,6 +6,7 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/5.3.3/css/bootstrap.min.css">
     <title>Categories List</title>
 </head>
 <body>

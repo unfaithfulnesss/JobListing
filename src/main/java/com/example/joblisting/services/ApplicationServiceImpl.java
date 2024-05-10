@@ -3,6 +3,8 @@ package com.example.joblisting.services;
 import com.example.joblisting.entities.Application;
 import com.example.joblisting.repositories.ApplicationRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -39,5 +41,10 @@ public class ApplicationServiceImpl implements ApplicationService{
     @Override
     public List<Application> getAllApplications() {
         return applicationRepository.findAll();
+    }
+
+    @Override
+    public Page<Application> getAllApplicationsByPage(int page, int size) {
+        return applicationRepository.findAll(PageRequest.of(page, size));
     }
 }
