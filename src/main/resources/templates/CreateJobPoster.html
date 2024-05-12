@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="Template.html"
+>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/5.3.3/css/bootstrap.min.css">
+    <title>Job poster Creation</title>
+</head>
+<body>
+<div layout:fragment="content">
+<main>
+    <form th:action="@{saveJobPoster}" method="post">
+        <div>
+            <label for="firstName">First Name : </label>
+            <input type="text" id="firstName" name="firstName" required>
+        </div>
+        <div>
+            <label for="lastName">Last Name : </label>
+            <input type="text" id="lastName" name="lastName" required>
+        </div>
+        <div>
+            <label for="email">Email : </label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+            <label for="company">Company : </label>
+            <input type="text" id="company" name="company" required>
+        </div>
+        <div>
+            <label for="password">Password : </label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div>
+            <input type="submit" value="Save">
+        </div>
+    </form>
+</main>
+<!--<footer>-->
+<!--    <a th:href="@{JobPostersList}">Job Posters List</a>-->
+<!--</footer>-->
+</div>
+</body>
+</html>

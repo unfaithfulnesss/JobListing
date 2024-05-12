@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="Template.html"
+>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/5.3.3/css/bootstrap.min.css">
+    <title>Categories List</title>
+</head>
+<body>
+<div layout:fragment="content">
+<main>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">CATEGORY NAME</th>
+            <th scope="col">ACTION </th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="Category:${Categories.content}">
+                <td th:text="${Category.id}"></td>
+                <td th:text="${Category.name}"></td>
+                <td th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+                    <a th:onclick="'return confirm(\'Are you sure to delete this Category?\')'" th:href="@{'deleteCategory?id='+${Category.id}}">
+                        Delete
+                    </a>
+                    <a th:href="@{'editCategory?id='+${Category.id}}">
+                        Edit
+                    </a>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+    <ul class="nav nav-pills">
+        <li th:each="page, status:${pages}">
+            <a th:class="${status.index == currentPage?'btn btn-primary':'btn'}"
+                th:href="@{CategoriesList(page=${status.index}, size=${size})}"
+                th:text="${status.index}"
+            ></a>
+        </li>
+    </ul>
+</main>
+<!--<footer>-->
+<!--    <a th:href="@{createCategory}">Category Creation</a>-->
+<!--</footer>-->
+</div>
+</body>
+</html>
+

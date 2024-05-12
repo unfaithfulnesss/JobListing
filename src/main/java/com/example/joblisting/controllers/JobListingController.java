@@ -7,10 +7,12 @@ import com.example.joblisting.enumerators.JobType;
 import com.example.joblisting.services.CategoryService;
 import com.example.joblisting.services.JobListingService;
 import com.example.joblisting.services.JobPosterService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,7 +37,9 @@ public class JobListingController {
         return "CreateJobListing";
     }
     @RequestMapping("/saveJobListing")
-    public String saveJobListing(@ModelAttribute("JobListing")JobListing jobListing){
+    public String saveJobListing(@Valid JobListing jobListing, BindingResult bindingResult){
+        if (bindingResult.hasErrors())
+            return "CreateJobListing";
         JobListing saveJobListing = jobListingService.saveJobListing(jobListing);
         return "CreateJobListing";
     }

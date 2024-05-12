@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="Template.html"
+>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/5.3.3/css/bootstrap.min.css">
+    <title>Application Edition</title>
+</head>
+<body>
+<div layout:fragment="content">
+<main>
+    <form th:action="@{updateApplication}" method="post">
+        <div hidden="hidden" >
+            <label for="id">ID : </label>
+            <input type="text" id="id" name="id" th:value="${Applications.id}">
+        </div>
+        <div>
+            <label for="resume">RESUME: </label>
+            <input type="text" id="resume" name="resume" th:value="${Applications.resume}">
+        </div>
+
+        <div>
+            <label for="applicationState">Application State :</label>
+            <select name="applicationState" id="applicationState">
+                    <option th:each="applicationState:${Applications.applicationState.values()}" th:value="${applicationState}" th:text="${applicationState}"></option>
+            </select>
+        </div>
+
+        <div>
+            <label for="applicant">Applicant:</label>
+            <select name="applicant" id="applicant">
+                    <option th:each="applicant:${Applicants}" th:value="${Applications.applicant.id}" th:text="${Applications.applicant.lastName}"></option>
+            </select>
+
+        </div>
+        <div>
+            <label for="jobListing">Job Listing:</label>
+            <select name="jobListing" id="jobListing">
+                    <option th:each="jobListing:${JobListings}" th:value="${Applications.jobListing.id}" th:text="${Applications.jobListing.jobTitle}"></option>
+            </select>
+
+        </div>
+
+        <div>
+            <input type="submit" value="Save">
+        </div>
+    </form>
+</main>
+<!--<footer>-->
+<!--    <a th:href="@{applicationsList}">Applications List</a>-->
+<!--</footer>-->
+</div>
+</body>
+</html>

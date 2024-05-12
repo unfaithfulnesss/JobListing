@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="Template.html"
+>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/5.3.3/css/bootstrap.min.css">
+    <title>Job Listing Edition</title>
+</head>
+<body>
+<div layout:fragment="content">
+<main>
+    <form th:action="@{updateJobListing}" method="post">
+        <div hidden="hidden" >
+            <label for="id">ID : </label>
+            <input type="text" id="id" name="id" th:value="${jobListing.id}">
+        </div>
+        <div>
+            <label for="jobTitle">Job title : </label>
+            <input type="text" id="jobTitle" name="jobTitle" th:value="${jobListing.jobTitle}">
+        </div>
+        <div>
+            <label for="description">Description : </label>
+            <input type="text" id="description" name="description" th:value="${jobListing.description}">
+        </div>
+        <div>
+            <label for="company">Company : </label>
+            <input type="text" id="company" name="company" th:value="${jobListing.company}">
+        </div>
+        <div>
+            <label for="salary">Salary : </label>
+            <input type="number" id="salary" name="salary" th:value="${jobListing.salary}">
+        </div>
+        <div>
+            <label for="jobType">Job Type : </label>
+            <select name="jobType" id="jobType">
+                <option th:each="type:${jobListing.jobType.values()}" th:value="${type}" th:text="${type}"></option>
+            </select>
+        </div>
+        <div>
+            <label for="datePosted">Date Posted : </label>
+            <input type="date" id="datePosted" name="datePosted" th:value="${jobListing.datePosted}">
+        </div>
+        <div>
+            <label for="category">Category:</label>
+            <select name="category" id="category">
+                    <option th:each="category:${categories}" th:value="${jobListing.category.id}" th:text="${jobListing.category.name}"></option>
+            </select>
+
+        </div>
+        <div>
+            <label for="jobPoster">Job Poster:</label>
+            <select name="jobPoster" id="jobPoster">
+                    <option th:each="jobPoster:${jobPosters}" th:value="${jobListing.jobPoster.id}" th:text="${jobListing.jobPoster.lastName}"></option>
+            </select>
+
+        </div>
+        <div>
+            <input type="submit" value="Update">
+        </div>
+    </form>
+</main>
+<!--<footer>-->
+<!--    <a th:href="@{JobListingsList}">Job Listings List</a>-->
+<!--</footer>-->
+</div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="Template.html"
+>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/5.3.3/css/bootstrap.min.css">
+    <title>Application Creation</title>
+</head>
+<body>
+<div layout:fragment="content">
+<main>
+    <form th:action="@{saveApplication}" method="post">
+        <div>
+            <label for="resume">RESUME: </label>
+            <input type="text" id="resume" name="resume" required>
+        </div>
+
+        <div>
+            <label for="applicationState">Application State :</label>
+            <select name="applicationState" id="applicationState" required >
+                    <option th:each="applicationState:${applicationStates}" th:value="${applicationState}" th:text="${applicationState}"></option>
+            </select>
+        </div>
+
+        <div>
+            <label for="applicant">Applicant:</label>
+            <select name="applicant" id="applicant" required>
+                    <option th:each="applicant:${applicants}" th:value="${applicant.id}" th:text="${applicant.lastName}"></option>
+            </select>
+
+        </div>
+        <div>
+            <label for="jobListing">Job Listing:</label>
+            <select name="jobListing" id="jobListing" required>
+                    <option th:each="jobListing:${jobListings}" th:value="${jobListing.id}" th:text="${jobListing.jobTitle}"></option>
+            </select>
+
+        </div>
+
+        <div>
+            <input type="submit" value="Save">
+        </div>
+    </form>
+</main>
+<!--<footer>-->
+<!--    <a th:href="@{applicationsList}">Applications List</a>-->
+<!--</footer>-->
+</div>
+</body>
+</html>

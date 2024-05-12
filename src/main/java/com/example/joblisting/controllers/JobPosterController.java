@@ -2,6 +2,7 @@ package com.example.joblisting.controllers;
 
 import com.example.joblisting.entities.JobPoster;
 import com.example.joblisting.services.JobPosterService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -22,7 +23,7 @@ public class JobPosterController {
     }
 
     @RequestMapping("/saveJobPoster")
-    public String saveJobPoster(@ModelAttribute("JobPoster")JobPoster jobPoster){
+    public String saveJobPoster(@Valid JobPoster jobPoster){
         JobPoster saveJobPoster = jobPosterService.saveJobPoster(jobPoster);
         return "CreateJobPoster";
     }

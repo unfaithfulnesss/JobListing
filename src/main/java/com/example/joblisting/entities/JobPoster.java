@@ -1,6 +1,8 @@
 package com.example.joblisting.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,7 +23,9 @@ public class JobPoster {
     @Column(unique = true)
     private String email;
     private String password;
+    @NotBlank(message = "jobposter.lastname is blank")
     private String firstName;
+    @NotBlank(message = " jobposter.lastname is blank")
     private String lastName;
     private String company;
 

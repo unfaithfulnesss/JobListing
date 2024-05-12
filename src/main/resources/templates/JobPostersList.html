@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="Template.html"
+>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/5.3.3/css/bootstrap.min.css">
+    <title>Job Posters List</title>
+</head>
+<body>
+
+<main>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">FIRST NAME</th>
+            <th scope="col">LAST NAME</th>
+            <th scope="col">EMAIL</th>
+            <th scope="col">COMPANY</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="JobPoster:${JobPosters.content}">
+                <td th:text="${JobPoster.id}"></td>
+                <td th:text="${JobPoster.firstName}"></td>
+                <td th:text="${JobPoster.lastName}"></td>
+                <td th:text="${JobPoster.email}"></td>
+                <td th:text="${JobPoster.company}"></td>
+
+                <td th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+                    <a th:onclick="'return confirm(\'Are you sure to delete this JobListing?\')'" th:href="@{'deleteJobPoster?id='+${JobPoster.id}}">
+                        Delete
+                    </a>
+                    <a th:href="@{'editJobPoster?id='+${JobPoster.id}}">
+                        Edit
+                    </a>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+    <ul class="nav nav-pills">
+        <li th:each="page, status:${pages}">
+            <a th:class="${status.index == currentPage?'btn btn-primary':'btn'}"
+               th:href="@{JobPostersList(page=${status.index}, size=${size})}"
+               th:text="${status.index}"
+            ></a>
+        </li>
+    </ul>
+</main>
+<!--<footer>-->
+<!--    <a href="createJobPoster">Job Poster Creation</a>-->
+<!--</footer>-->
+</body>
+</html>
+

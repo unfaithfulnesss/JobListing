@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="Template.html"
+>
+<head>
+    <!-- Required meta tags  -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <!--Core CSS -->
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/5.3.3/css/bootstrap.min.css">
+
+    <title>Applicants List</title>
+</head>
+<body>
+<div layout:fragment="content">
+<main>
+
+    <div class="s-card demo-table">
+        <table class="table is-striped is-fullwidth">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">FIRST NAME</th>
+                <th scope="col">LAST NAME</th>
+                <th scope="col">EMAIL</th>
+                <th class="is-end">
+                    <div class="dark-inverted">
+                        Actions
+                    </div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr th:each="applicant:${applicants.content}">
+                    <td th:text="${applicant.id}"></td>
+                    <td th:text="${applicant.firstName}"></td>
+                    <td th:text="${applicant.lastName}"></td>
+                    <td th:text="${applicant.email}"></td>
+
+                    <td th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+                        <a th:onclick="'return confirm(\'Are you sure to delete this Applicant?\')'" th:href="@{'deleteApplicant?id='+${applicant.id}}">
+                            Delete
+                        </a>
+                        <a th:href="@{'editApplicant?id='+${applicant.id}}">
+                            Edit
+                        </a>
+                    </td>
+
+
+                </tr>
+        </tbody>
+    </table>
+    <ul class="nav nav-pills">
+            <li th:each="page, status:${pages}">
+                <a th:class="${status.index == currentPage?'btn btn-primary':'btn'}"
+                   th:href="@{applicantsList(page=${status.index}, size=${size})}"
+                   th:text="${status.index}"
+                ></a>
+            </li>
+    </ul>
+    </div>
+</main>
+<!--
+<footer>
+    <a th:href="@{createApplicant}">Applicant Creation</a>
+</footer>       -->
+</div>
+</body>
+</html>
+

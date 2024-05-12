@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="Template.html"
+>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/5.3.3/css/bootstrap.min.css">
+    <title>JobPoster Edition</title>
+</head>
+<body>
+<div layout:fragment="content">
+<main>
+    <form th:action="@{updateJobPoster}" method="post">
+        <div hidden="hidden" >
+            <label for="id">ID : </label>
+            <input type="text" id="id" name="id" th:value="${JobPosters.id}">
+        </div>
+        <div>
+            <label for="firstName">First Name : </label>
+            <input type="text" id="firstName" name="firstName" th:value="${JobPosters.firstName}">
+        </div>
+        <div>
+            <label for="lastName">Last Name : </label>
+            <input type="text" id="lastName" name="lastName" th:value="${JobPosters.lastName}">
+        </div>
+        <div>
+            <label for="email">Email : </label>
+            <input type="email" id="email" name="email" th:value="${JobPosters.email}">
+        </div>
+        <div>
+            <label for="company">Company : </label>
+            <input type="text" id="company" name="company" th:value="${JobPosters.company}">
+        </div>
+        <div>
+            <input type="submit" value="Update">
+        </div>
+    </form>
+</main>
+<!--<footer>-->
+<!--    <a th:href="@{JobPostersList}">JobPosters List</a>-->
+    <!--</footer>-->
+</div>
+</body>
+</html>
+
+

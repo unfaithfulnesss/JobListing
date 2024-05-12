@@ -2,10 +2,12 @@ package com.example.joblisting.controllers;
 
 import com.example.joblisting.entities.Applicant;
 import com.example.joblisting.services.ApplicantService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,7 +24,9 @@ public class ApplicantController {
     }
 
     @RequestMapping("/saveApplicant")
-    public String saveApplicant(@ModelAttribute("applicant")Applicant applicant){
+    public String saveApplicant(@Valid Applicant applicant, BindingResult bindingResult){
+        if (bindingResult.hasErrors())
+            return "CreateApplicant";
         Applicant saveApplicant = applicantService.saveApplicant(applicant);
         return "CreateApplicant";
     }
