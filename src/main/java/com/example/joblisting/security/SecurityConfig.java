@@ -21,7 +21,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
-                .formLogin(Customizer.withDefaults())
+               // .formLogin(Customizer.withDefaults())
                 .httpBasic(Customizer.withDefaults())
                 .authorizeHttpRequests(
                         authCustomizer -> authCustomizer
@@ -34,8 +34,14 @@ public class SecurityConfig {
                                 .requestMatchers("/createJobListing", "/saveJobListing", "/editJobListing",
                                         "/deleteJobListing", "/updateJobListing",
                                         "/CategoriesList","/applicantsList").hasAnyRole("JOBPOSTER", "ADMIN")
+                                .requestMatchers("/login", "/webjars/**").permitAll()
                                 .anyRequest().authenticated()
                         )
+                .formLogin(
+                        formLogin -> formLogin
+                                .loginPage("/login")
+                                .defaultSuccessUrl("/")
+                )
                 .exceptionHandling(e->e.accessDeniedPage("/accessDenied"))
                 .build();
     }

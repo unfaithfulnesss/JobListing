@@ -22,6 +22,8 @@ public class JobPoster {
     private long id;
     @Column(unique = true)
     private String email;
+    @Column(unique = true)
+    private String username;
     private String password;
     @NotBlank(message = "jobposter.lastname is blank")
     private String firstName;

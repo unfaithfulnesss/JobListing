@@ -22,6 +22,8 @@ public class Applicant {
     private long id;
     @Column(unique = true)
     private String email;
+    @Column(unique = true)
+    private String username;
     private String password;
     @NotBlank(message = "applicant.firstname is blank")
     private String firstName;
