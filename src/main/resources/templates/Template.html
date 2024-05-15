@@ -22,8 +22,29 @@
                 <li><a class="dropdown-item" th:href="@{JobListingsList}">List</a></li>
             </ul>
         </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Categories</a>
+            <ul class="dropdown-menu">
+                <li th:if="${#authorization.expression('hasRole(''ADMIN'')')}"><a class="dropdown-item" th:href="@{createCategory}">New</a></li>
+                <li><a class="dropdown-item" th:href="@{CategoriesList}">List</a></li>
+            </ul>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Applicants</a>
+            <ul class="dropdown-menu">
+                <li th:if="${#authorization.expression('hasRole(''ADMIN'')')}"><a class="dropdown-item" th:href="@{createApplicant}">New</a></li>
+                <li><a class="dropdown-item" th:href="@{applicantsList}">List</a></li>
+            </ul>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Job Posters</a>
+            <ul class="dropdown-menu">
+                <li th:if="${#authorization.expression('hasRole(''ADMIN'')')}"><a class="dropdown-item" th:href="@{createJobPoster}">New</a></li>
+                <li><a class="dropdown-item" th:href="@{JobPostersList}">List</a></li>
+            </ul>
+        </li>
     </ul>
-    <ul class="navbar-nav">
+    <ul class="navbar-nav ms-auto">
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" th:text="${#authentication.name}">[username]</a>
             <ul class="dropdown-menu">
