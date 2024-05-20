@@ -25,7 +25,7 @@ public class JobPosterController {
     @RequestMapping("/saveJobPoster")
     public String saveJobPoster(@Valid JobPoster jobPoster){
         JobPoster saveJobPoster = jobPosterService.saveJobPoster(jobPoster);
-        return "CreateJobPoster";
+        return "redirect:/JobPostersList";
     }
     @RequestMapping("/JobPostersList")
     public String JobPostersList(ModelMap modelMap,
@@ -61,6 +61,6 @@ public class JobPosterController {
     @RequestMapping("/updateJobPoster")
     public String updateJobPoster(@ModelAttribute("JobPoster")JobPoster JobPoster){
         jobPosterService.updateJobPoster(JobPoster);
-        return createJobPoster();
+        return "redirect:/JobPostersList";
     }
 }

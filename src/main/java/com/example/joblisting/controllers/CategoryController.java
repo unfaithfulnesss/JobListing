@@ -24,7 +24,7 @@ public class CategoryController {
     @RequestMapping("/saveCategory")
     public String saveCategory(@ModelAttribute("Category")Category category){
         Category saveCategory = categoryService.saveCategory(category);
-        return "CreateCategory";
+        return "redirect:/CategoriesList";
     }
     @RequestMapping("/CategoriesList")
     public String categoriesList(ModelMap modelMap,
@@ -59,6 +59,6 @@ public class CategoryController {
     @RequestMapping("/updateCategory")
     public String updateCategory(@ModelAttribute("Category")Category category){
         categoryService.updateCategory(category);
-        return createCategory();
+        return "redirect:/CategoriesList";
     }
 }

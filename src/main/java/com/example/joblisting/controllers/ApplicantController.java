@@ -28,7 +28,7 @@ public class ApplicantController {
         if (bindingResult.hasErrors())
             return "CreateApplicant";
         Applicant saveApplicant = applicantService.saveApplicant(applicant);
-        return "CreateApplicant";
+        return "redirect:/applicantsList";
     }
     @RequestMapping("/applicantsList")
     public String applicantsList(ModelMap modelMap,
@@ -62,6 +62,6 @@ public class ApplicantController {
     @RequestMapping("/updateApplicant")
     public String updateApplicant(@ModelAttribute("applicant")Applicant applicant){
         applicantService.updateApplicant(applicant);
-        return createApplicant();
+        return "redirect:/applicantsList";
     }
 }

@@ -15,15 +15,15 @@
 <main>
     <form th:action="@{updateCategory}" method="post">
         <div hidden="hidden" >
-            <label for="id">ID : </label>
-            <input type="text" id="id" name="id" th:value="${Categories.id}">
+            <label for="id" class="form-label fw-semibold">ID : </label>
+            <input type="text" class="form-control form-control-lg" id="id" name="id" th:value="${Categories.id}">
         </div>
         <div>
-            <label for="name">Category Name : </label>
-            <input type="text" id="name" name="name" th:value="${Categories.name}">
-        </div>
+            <label for="name" class="form-label fw-semibold">Category Name : </label>
+            <input type="text" class="form-control form-control-lg" id="name" name="name" th:value="${Categories.name}">
+        </div> <br>
         <div>
-            <input type="submit" value="Update">
+            <input type="submit" class="btn btn-outline-success" value="Update">
         </div>
     </form>
 </main>

@@ -41,7 +41,7 @@ public class JobListingController {
         if (bindingResult.hasErrors())
             return "CreateJobListing";
         JobListing saveJobListing = jobListingService.saveJobListing(jobListing);
-        return "CreateJobListing";
+        return "redirect:/JobListingsList";
     }
 
     @RequestMapping("/JobListingsList")
