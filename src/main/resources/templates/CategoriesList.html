@@ -16,7 +16,7 @@
         <tr>
             <th scope="col">ID</th>
             <th scope="col">CATEGORY NAME</th>
-            <th scope="col">ACTION </th>
+            <th scope="col" th:if="${#authorization.expression('hasRole(''ADMIN'')')}">ACTION </th>
         </tr>
         </thead>
         <tbody>

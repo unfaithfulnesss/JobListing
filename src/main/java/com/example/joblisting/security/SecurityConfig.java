@@ -30,11 +30,11 @@ public class SecurityConfig {
                                         "/editJobPoster", "/deleteJobPoster", "/updateJobPoster",
                                         "/createApplicant", "/saveApplicant","/createJobPoster", "saveJobPoster").hasRole("ADMIN")
                                 .requestMatchers("/createApplication", "/saveApplication","/editApplication","/deleteApplication", "/updateApplication",
-                                        "/CategoriesList", "/JobListingsList", "/").hasAnyRole("ADMIN", "APPLICANT")
+                                        "/CategoriesList").hasAnyRole("ADMIN", "APPLICANT")
                                 .requestMatchers("/createJobListing", "/saveJobListing", "/editJobListing",
                                         "/deleteJobListing", "/updateJobListing",
                                         "/CategoriesList","/applicantsList").hasAnyRole("JOBPOSTER", "ADMIN")
-                                .requestMatchers("/login", "/webjars/**").permitAll()
+                                .requestMatchers("/login", "/JobListingsList", "/webjars/**").permitAll()
                                 .anyRequest().authenticated()
                         )
                 .formLogin(

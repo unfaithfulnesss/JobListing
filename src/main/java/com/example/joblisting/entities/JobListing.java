@@ -31,7 +31,7 @@ public class JobListing {
     @Min(value = 100)
     private double salary;
     private JobType jobType = JobType.PERMANENT;
-    @CreatedDate
+
     private Date datePosted;
 
     @ManyToOne(fetch = FetchType.LAZY)
