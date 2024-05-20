@@ -29,12 +29,11 @@ public class SecurityConfig {
                                         "/editCategory", "/deleteCategory", "/updateCategory",
                                         "/editJobPoster", "/deleteJobPoster", "/updateJobPoster",
                                         "/createApplicant", "/saveApplicant","/createJobPoster", "saveJobPoster").hasRole("ADMIN")
-                                .requestMatchers("/createApplication", "/saveApplication","/editApplication","/deleteApplication", "/updateApplication",
-                                        "/CategoriesList").hasAnyRole("ADMIN", "APPLICANT")
+                                .requestMatchers("/createApplication", "/saveApplication","/editApplication","/deleteApplication", "/updateApplication")
+                                                    .hasAnyRole("ADMIN", "APPLICANT")
                                 .requestMatchers("/createJobListing", "/saveJobListing", "/editJobListing",
-                                        "/deleteJobListing", "/updateJobListing",
-                                        "/CategoriesList","/applicantsList").hasAnyRole("JOBPOSTER", "ADMIN")
-                                .requestMatchers("/login", "/JobListingsList", "/webjars/**").permitAll()
+                                        "/deleteJobListing", "/updateJobListing","/applicantsList").hasAnyRole("JOBPOSTER", "ADMIN")
+                                .requestMatchers("/login", "/JobListingsList", "/CategoriesList", "/webjars/**").permitAll()
                                 .anyRequest().authenticated()
                         )
                 .formLogin(
