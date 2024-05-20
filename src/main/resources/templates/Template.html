@@ -16,7 +16,7 @@
             <a class="nav-link" th:href="@{JobListingsList}">Home</a>
         </li>
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">JobListings</a>
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Job listings</a>
             <ul class="dropdown-menu">
                 <li th:if="${#authorization.expression('hasRole(''ADMIN'') or hasRole(''jobPoster'')')}"><a class="dropdown-item" th:href="@{createJobListing}">New</a></li>
                 <li><a class="dropdown-item" th:href="@{JobListingsList}">List</a></li>
@@ -46,7 +46,7 @@
     </ul>
     <ul class="navbar-nav ms-auto">
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" th:text="${#authentication.name}">[username]</a>
+            <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" th:text="${#authentication.name}">[username]</a>
             <ul class="dropdown-menu">
                 <a sec:authorize="!isAuthenticated()" class="dropdown-item" href="#">login</a>
                 <form method="post" th:action="@{/logout}">
@@ -57,15 +57,14 @@
         </li>
     </ul>
 </nav>
-<main class="container mt-5">
+<main class="container mt-3">
     <div layout:fragment="content">
 
     </div>
 </main>
-<footer class="text-center fixed-bottom text-lg-start bg-light text-muted">
+<footer class="text-center text-lg-start bg-light text-muted"> <br>
     <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-        © 2024 Copyright:
-        <a class="text-reset fw-bold">joblisting.com</a>
+        Copyright © 2024. All rights reserved.
     </div>
 </footer>
 </body>

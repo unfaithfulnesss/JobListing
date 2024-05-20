@@ -15,11 +15,11 @@
 <main>
     <form th:action="@{saveCategory}" method="post">
         <div>
-            <label for="name">Category Name : </label>
-            <input type="text" id="name" name="name" required>
-        </div>
+            <label for="name" class="form-label fw-semibold">Category Name : </label>
+            <input type="text" class="form-control form-control-lg" id="name" name="name" required>
+        </div> <br>
         <div>
-            <input type="submit" value="Save">
+            <input class="btn btn-outline-success" type="submit" value="Save">
         </div>
     </form>
 </main>

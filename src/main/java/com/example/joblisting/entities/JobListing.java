@@ -25,6 +25,7 @@ public class JobListing {
     private long id;
     @NotBlank
     private String jobTitle;
+    @Column(name = "description", columnDefinition = "TEXT", length = 2000, nullable = false)
     private String description;
     private String company;
     @Min(value = 100)

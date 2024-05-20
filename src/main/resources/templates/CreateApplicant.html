@@ -15,23 +15,23 @@
 <main>
     <form th:action="@{saveApplicant}" method="post">
         <div>
-            <label for="firstName">First Name : </label>
-            <input type="text" id="firstName" name="firstName" required>
+            <label for="firstName" class="form-label fw-semibold">First Name : </label>
+            <input type="text" class="form-control form-control-lg" id="firstName" name="firstName" required>
         </div>
         <div>
-            <label for="lastName">Last Name : </label>
-            <input type="text" id="lastName" name="lastName" required>
+            <label for="lastName" class="form-label fw-semibold">Last Name : </label>
+            <input type="text" class="form-control form-control-lg" id="lastName" name="lastName" required>
         </div>
         <div>
-            <label for="email">Email : </label>
-            <input type="email" id="email" name="email" required>
+            <label for="email" class="form-label fw-semibold">Email : </label>
+            <input type="email" class="form-control form-control-lg" id="email" name="email" required>
         </div>
         <div>
-            <label for="password">Password : </label>
-            <input type="password" id="password" name="password" required>
+            <label for="password" class="form-label fw-semibold">Password : </label>
+            <input type="password" class="form-control form-control-lg" id="password" name="password" required>
         </div>
-        <div>
-            <input type="submit" value="Save">
+        <div> <br>
+            <input type="submit" class="btn btn-outline-success" value="Save">
         </div>
     </form>
 </main>

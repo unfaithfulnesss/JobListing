@@ -19,19 +19,19 @@
             <input type="text" id="id" name="id" th:value="${applicants.id}">
         </div>
         <div>
-            <label for="firstName">First Name : </label>
-            <input type="text" id="firstName" name="firstName" th:value="${applicants.firstName}">
+            <label for="firstName" class="form-label fw-semibold">First Name : </label>
+            <input type="text" class="form-control form-control-lg" id="firstName" name="firstName" th:value="${applicants.firstName}">
         </div>
         <div>
-            <label for="lastName">Last Name : </label>
-            <input type="text" id="lastName" name="lastName" th:value="${applicants.lastName}">
+            <label for="lastName" class="form-label fw-semibold">Last Name : </label>
+            <input type="text" class="form-control form-control-lg" id="lastName" name="lastName" th:value="${applicants.lastName}">
         </div>
         <div>
-            <label for="email">Email : </label>
-            <input type="email" id="email" name="email" th:value="${applicants.email}">
-        </div>
+            <label for="email" class="form-label fw-semibold">Email : </label>
+            <input type="email" class="form-control form-control-lg" id="email" name="email" th:value="${applicants.email}">
+        </div> <br>
         <div>
-            <input type="submit" value="Update">
+            <input type="submit" class="btn btn-outline-success" value="Update">
         </div>
     </form>
 </main>
